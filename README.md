@@ -1,2 +1,46 @@
 # datapulse-kafka-pipeline
 This project implements a real-time data pipeline using Apache Kafka, Python's psutil library for metric collection, and SQL Server for data storage. The pipeline collects metrics data from the local computer, processes it through Kafka brokers, and loads it into a SQL Server database. Additionally, a real-time dashboard is created using Power BI.
+
+Project Overview
+This project implements a real-time data pipeline using Apache Kafka, Python's psutil library for metric collection, and SQL Server for data storage. The pipeline collects metrics data from the local computer, processes it through Kafka brokers, and loads it into a SQL Server database. Additionally, a real-time dashboard is created using Power BI, providing a user-friendly interface for monitoring the collected metrics.
+
+Technologies Used
+Python: Utilized the psutil library for collecting metrics data and Kafka Python client for producing and consuming messages.
+Apache Kafka: Implemented a distributed streaming platform to handle real-time data processing and communication between producers and consumers.
+Apache Zookeeper: Used for coordinating and managing Kafka brokers.
+SQL Server: Stored and managed the collected metrics data in a relational database.
+Power BI: Connected to the SQL Server database to visualize real-time metrics and create the dashboard.
+
+Data Pipeline
+The data pipeline consists of the following steps:
+
+Data Collection: Metrics data is collected from the local computer using the psutil Python library.
+Data Production: The collected data is sent as messages to Kafka topics through a Kafka producer.
+Data Consumption: Kafka consumers read the messages from the topics, process them, and load the data into SQL Server.
+Dashboard Creation: Power BI connects to the SQL Server database and creates a real-time dashboard for monitoring the metrics data.
+
+How to Run
+Setting up Kafka: Ensure Apache Kafka and Apache Zookeeper are installed and configured properly. Modify Kafka and Zookeeper configurations in the config/ directory if necessary.
+
+Database Setup: Create a database and necessary table in SQL Server using the script provided in sql-scripts.sql.
+
+Start the Apache Zookeeper :
+
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+Start kafka server :
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+Create kafka topic :
+.\bin\windows\kafka-topics.bat --create --topic firstTopic --bootstrap-server localhost:9092
+Start the producer :
+.\bin\windows\kafka-console-producer.bat --topic firstTopic --bootstrap-server localhost:9092
+Start the consumer :
+.\bin\windows\kafka-console-consumer.bat --topic firstTopic --from-beginning --bootstrap-server localhost:9092
+this commands for windows OS.
+Running the Pipeline:
+
+7.1 Install the requirements :
+pip install requirements.txt
+7.2 Run data_pipeline.py
+to collect metrics data and send messages to Kafka topics, consume messages from Kafka topics and load data into SQL Server. (change the server name of sql server database)
+
+Dashboard Visualization: Open dashboard_real-time.pbix in Power BI and connect to the SQL Server database to visualize real-time metrics.
