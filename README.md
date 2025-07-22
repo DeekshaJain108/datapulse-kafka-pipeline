@@ -25,7 +25,7 @@ This project implements a real-time data pipeline using `Apache Kafka`, Python's
 
 Here is the data pipeline :
 
-![Data_pipeline](images/data_pipeline.png)
+![Data_pipeline](data_pipeline.png)
 
 The data pipeline consists of the following steps:
 1. **Data Collection:** Metrics data is collected from the local computer using the psutil Python library.
